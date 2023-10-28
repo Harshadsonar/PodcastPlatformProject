@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./App.css";
 import SignUpPage from "./pages/SignUpPage";
 import Profile from "./pages/Profile";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useEffect } from "react";
 import { doc, onSnapshot } from "firebase/firestore";
@@ -50,7 +50,7 @@ function App() {
     return () => {
       unsubscribeAuth();
     };
-  }, []);
+  }, );
 
   return (
     <div className="App">

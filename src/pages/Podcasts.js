@@ -31,14 +31,14 @@ function PodcastsPage() {
     };
   }, [dispatch]);
 
-  var filteredPodcasts = podcasts.filter((item) =>
+  let filteredPodcasts = podcasts.filter((item) =>
     item.title.trim().toLowerCase().includes(search.toLowerCase())
   );
   return (
     <div>
       <Header />
       <div className="input-wrapper">
-        <h1>POdcasts</h1>
+        <h1>My Podcasts</h1>
         <InputComponent
           state={search}
           setState={setSearch}
