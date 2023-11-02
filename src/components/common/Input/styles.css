@@ -1,28 +1,29 @@
-.custom-input{
+.custom-input {
     background-color: var(--theme);
     color: var(--white);
     border: 2px solid var(--purple-grey);
     border-radius: 0.35rem;
-    padding: 0.8rem 1rem ;
+    padding: 0.8rem 1rem;
     font-size: 1rem;
     width: 70vw;
     font-weight: 500;
     margin: 0.7rem;
+    cursor: pointer;
 }
 
-.custom-input:focus{
+.custom-input:focus {
     outline: none;
     border-color: var(--white);
 }
 
-.custom-input::placeholder{
+.custom-input::placeholder {
     color: var(--purple-grey);
 }
 
-.label-input{
-    color: var(--purple-grey);    
+.label-input {
+    color: var(--purple-grey);
 }
 
-.active{
+.active {
     border-color: var(--white);
 }

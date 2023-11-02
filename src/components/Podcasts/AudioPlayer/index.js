@@ -15,6 +15,11 @@ function AudioPlayer({ audioSrc, image }) {
     audioRef.current.currentTime = e.target.value;
   };
 
+  const handleVolume = (e) => {
+    setVolume(e.target.value);
+    audioRef.current.volume = e.target.value;
+  };
+
   const togglePlay = () => {
     if (isPlaying) setIsPlaying(false);
     else setIsPlaying(true);
@@ -23,11 +28,6 @@ function AudioPlayer({ audioSrc, image }) {
   const toggleMute = () => {
     if (isMute) setIsMute(false);
     else setIsMute(true);
-  };
-
-  const handleVolume = (e) => {
-    setVolume(e.target.value);
-    audioRef.current.volume = e.target.value;
   };
 
   const formateTime = (time) => {
@@ -79,13 +79,24 @@ function AudioPlayer({ audioSrc, image }) {
     }
   }, [isMute]);
 
+  const handleBackwardBtn = () => {
+    const newCurrentTime = currentTime - 10;
+    setCurrentTime(newCurrentTime);
+    audioRef.current.currentTime = newCurrentTime;
+  };
+  const handleForwardBtn = () => {
+    const newCurrentTime = currentTime + 10;
+    setCurrentTime(newCurrentTime);
+    audioRef.current.currentTime = newCurrentTime;
+  };
+
   return (
-    <div className="custom-audio-player">
-      <img src={image} className="display-image-player" alt="Audio-Player" />
+    <div className="audio-player">
+      <div className="player">
+        <div className="display-image-player">
+        <img src={image} alt="Audio-Player" />
+        </div>
       <audio ref={audioRef} src={audioSrc} />
-      <p className="audio-btn" onClick={togglePlay}>
-        {isPlaying ? <FaPause /> : <FaPlay />}
-      </p>
       <div className="duration-flex">
         <p>{formateTime(currentTime)}</p>
         <input
@@ -93,11 +104,27 @@ function AudioPlayer({ audioSrc, image }) {
           max={duration}
           value={currentTime}
           onChange={handleDuration}
+          step={0.01}
           className="duration-range"
         />
-        <p>{formateTime(duration)}</p>
-        <p className="audio-btn" onClick={toggleMute}>
-          {!isMute ? <FaVolumeUp /> : <FaVolumeMute />}
+        <p>-{formateTime(duration - currentTime)}</p>
+      </div>
+      </div>
+        <div className="player-controls">
+        <div className="control-btns">
+          <p className="backward-btn" onClick={handleBackwardBtn}>
+            -10s
+          </p>
+          <p onClick={togglePlay} className="play-pause-btn">
+            {isPlaying ? <FaPause /> : <FaPlay />}
+          </p>
+          <p className="forward-btn" onClick={handleForwardBtn}>
+            +10s
+          </p>
+        </div>
+        <div className="volume-flex"> 
+        <p className="mute-unmute-btn" onClick={toggleMute}>
+          {isMute ? <FaVolumeMute /> : <FaVolumeUp />}
         </p>
         <input
           type="range"
@@ -108,6 +135,8 @@ function AudioPlayer({ audioSrc, image }) {
           onChange={handleVolume}
           className="volume-range"
         />
+        
+        </div>
       </div>
     </div>
   );

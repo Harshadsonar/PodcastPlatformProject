@@ -95,13 +95,7 @@ function CreatePodCastForm() {
         fileHandleFnc={bannerImageHandle}
         text={"Banner Image Upload"}
       />
-      {/* <InputComponent
-        state={displayImage}
-        setState={setDisplayImage}
-        placeholder="Display Image"
-        type="file"
-        required={true}
-      /> */}
+      
       <Button
         text={loading ? "Loading..." : "Create Podcast"}
         disabled={loading}

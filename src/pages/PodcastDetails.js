@@ -14,10 +14,9 @@ function PodcastDetailsPage() {
   const [podcast, setPodcast] = useState({});
   const [episodes, setEpisodes] = useState([]);
   const [playingFile, setPlayingFile] = useState("");
+
   useEffect(() => {
-    if (id) {
       getData();
-    }
   }, [id]);
 
   const getData = async () => {
@@ -26,7 +25,7 @@ function PodcastDetailsPage() {
       const docSnap = await getDoc(docRef);
 
       if (docSnap.exists()) {
-        console.log("Document data", docSnap.data());
+        // console.log("Document data", docSnap.data());
         setPodcast({ id: id, ...docSnap.data() });
         // toast.success("Podcast Found");
       } else {
@@ -60,9 +59,9 @@ function PodcastDetailsPage() {
   }, [id]);
 
   return (
-    <div>
+    <>
       <Header />
-      <div className="input-wrapper" style={{ marginTop: "0rem" }}>
+      <div className="input-wrapper">
         {podcast.id && (
           <>
             <div
@@ -74,19 +73,19 @@ function PodcastDetailsPage() {
               }}
             >
               <h1 className="podcast-title-heading">{podcast.title}</h1>
-              {podcast.createdBy == auth.currentUser.uid && (
+              {podcast.createdBy === auth.currentUser.uid && (
                 <Button
                   style={{ width: "200px", margin: 0 }}
                   text={"Create Episode"}
                   onClick={() => {
-                    navigate(`/podcast/${id}/create-episode`);
+                    navigate(`/podcasts/${id}/create-episode`);
                   }}
                 />
               )}
             </div>
 
             <div className="banner-wrapper">
-              <img src={podcast.bannerImage} />
+              <img src={podcast.bannerImage} alt="bannerImage" />
             </div>
             <p className="podcast-description">{podcast.description}</p>
             <h1 className="podcast-title-heading">Episodes</h1>
@@ -106,15 +105,14 @@ function PodcastDetailsPage() {
                 })}
               </>
             ) : (
-              <p>No Episodes</p>
+              <p style={{color: "var(--purple-grey" }}>
+              No Episodes Available</p>
             )}
           </>
         )}
       </div>
-      {playingFile && (
-        <AudioPlayer audioSrc={playingFile} image={podcast.displayImage} />
-      )}
-    </div>
+      {playingFile && <AudioPlayer audioSrc={playingFile} image={podcast.displayImage} />}
+    </>
   );
 }
 

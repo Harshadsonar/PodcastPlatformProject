@@ -8,19 +8,20 @@ import { useNavigate } from 'react-router-dom';
 import { setUser } from '../../../slices/userSlice';
 import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
+import ForgotPassword from '../../ForgotPassword';
 
 function LogInForm() {
 
   const [email,setEmail] = useState("");
   const [password,setpassword] = useState("");
   const [loading,setLoading] = useState(false);
-
+  const [popup,setPopup] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch()
   
 
   const handleLogin = async ()=>{
-    console.log("Handling Login");
+    // console.log("Handling Login");
     setLoading(true);
     if(email && password){
     try{
@@ -76,8 +77,12 @@ function LogInForm() {
     required={true}
   />
   <Button text={loading ? "Loading.." : "Log In"} disabled={loading} onClick={handleLogin}/>
+  <p onClick={() => setPopup(true)}>Forgot Password</p>
+  <div>
+    <ForgotPassword trigger={popup} setTrigger={popup}/>
+  </div>
   </>
   )
 }
 
-export default LogInForm
+export default LogInForm;
