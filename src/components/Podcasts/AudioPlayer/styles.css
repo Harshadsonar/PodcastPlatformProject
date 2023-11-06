@@ -60,6 +60,42 @@
     transition: all 0.3s ease;
 }
 
+.speed-control {
+    display: flex;
+}
+
+.speed-control-btn {
+    width: 20px;
+    height: 20px;
+    margin-top: 25px;
+}
+
+.speed-control select {
+    width: 60px;
+    font-weight: 400;
+    color: #0ECBFA;
+    background-color: black;
+    cursor: pointer;
+    height: 30px;
+    text-align: center;
+    border: none;
+    border-radius: 10px;
+    -o-transition: all .4s ease-in-out;
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+}
+
+.speed-control select:hover {
+    background-position: 100% 0;
+    -o-transition: all .4s ease-in-out;
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+}
+
+.speed-control select {
+    outline: none;
+}
+
 .volume-flex {
     /* border: 1px solid seagreen; */
     width: 100%;

@@ -8,6 +8,7 @@ function AudioPlayer({ audioSrc, image }) {
   const [volume, setVolume] = useState(1);
   const [isPlaying, setIsPlaying] = useState(true);
   const [isMute, setIsMute] = useState(false);
+  const [playbackSpeed, setPlaybackSpeed] = useState(1);
   const audioRef = useRef();
 
   const handleDuration = (e) => {
@@ -29,6 +30,23 @@ function AudioPlayer({ audioSrc, image }) {
     if (isMute) setIsMute(false);
     else setIsMute(true);
   };
+
+  const changeSpeed = (speed) => {
+    setPlaybackSpeed(speed);
+    audioRef.current.playbackRate = speed;
+  };
+
+  // const increaseSpeed = () => {
+  //   if(playbackSpeed < 10) {
+  //     changeSpeed((playbackSpeed + 0.1).toFixed(1));
+  //   }
+  // };
+
+  // const decreaseSpeed = () => {
+  //   if(playbackSpeed > 0.1) {
+  //     changeSpeed((playbackSpeed - 0.1).toFixed(1));
+  //   }
+  // };
 
   const formateTime = (time) => {
     const minutes = Math.floor(time / 60);
@@ -109,6 +127,21 @@ function AudioPlayer({ audioSrc, image }) {
         />
         <p>-{formateTime(duration - currentTime)}</p>
       </div>
+      <div className="speed-control">
+            <select
+            value={playbackSpeed}
+            onChange={(e) => changeSpeed(parseFloat(e.target.value))}
+            > 
+              <option value="0.5">0.5x</option>
+              <option value="0.75">0.75x</option>
+              <option value="1">1x</option>
+              <option value="1.5">1.5x</option>
+              <option value="2">2x</option>
+            </select>
+            {/* <button className="speed-control-btn" onClick={increaseSpeed}>+</button>
+            <p className="speed-label">{playbackSpeed}x</p>
+            <button className="speed-control-btn" onClick={decreaseSpeed}>-</button> */}
+          </div>
       </div>
         <div className="player-controls">
         <div className="control-btns">
@@ -135,7 +168,6 @@ function AudioPlayer({ audioSrc, image }) {
           onChange={handleVolume}
           className="volume-range"
         />
-        
         </div>
       </div>
     </div>

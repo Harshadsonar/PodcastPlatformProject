@@ -193,6 +193,7 @@ function Profile() {
                   value={profileDetails.email}
                   onChange={handleChange}
                   name="email"
+                  disabled
                   className="readable-input"
                 />
               </p>

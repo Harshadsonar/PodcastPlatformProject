@@ -8,7 +8,6 @@ import { useNavigate } from 'react-router-dom';
 import { setUser } from '../../../slices/userSlice';
 import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
-import ForgotPassword from '../../ForgotPassword';
 
 function LogInForm() {
 
@@ -78,9 +77,6 @@ function LogInForm() {
   />
   <Button text={loading ? "Loading.." : "Log In"} disabled={loading} onClick={handleLogin}/>
   <p onClick={() => setPopup(true)}>Forgot Password</p>
-  <div>
-    <ForgotPassword trigger={popup} setTrigger={popup}/>
-  </div>
   </>
   )
 }

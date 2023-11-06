@@ -1,14 +1,26 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./styles.css";
+import { useDispatch } from "react-redux";
+import { deletePodcast } from '../../../slices/podcastSlice'; 
 
-function PodcastCard({ id, title, displayImage }) {
+
+function PodcastCard({ id, title, displayImage, onDelete }) {
+  const dispatch = useDispatch();
+
+  const handleDelete = () => {
+    if(onDelete){
+      onDelete(id);
+    } else{
+      dispatch(deletePodcast(id));
+    }
+  }
   return (
     <Link to={`/podcast/${id}`}>
       <div className="podcast-card">
         <img className="display-image-podcast" src={displayImage} alt={title} />
-        <p className="title-podcast">{title}</p>
-        <p className="title-podcast-content">TRENDING NOW ...</p>
+        <h3 className="title-podcast">{title}</h3>
+        <button onClick={handleDelete}>Delete</button>
       </div>
     </Link>
   );

@@ -14,7 +14,7 @@ import PrivateRoutes from "./components/common/PrivateRoutes";
 import CreateAPodcastPage from "./pages/CreateAPodcast";
 import PodcastsPage from "./pages/Podcasts";
 import PodcastDetailsPage from "./pages/PodcastDetails";
-import CreateAnEpisodePge from "./pages/CreateAnEpisode";
+import CreateAnEpisodePge from "./pages/CreateEpisode";
 
 function App() {
   const dispatch = useDispatch();

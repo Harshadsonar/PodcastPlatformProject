@@ -17,8 +17,10 @@ function PodcastDetailsPage() {
 
   useEffect(() => {
       getData();
-  }, [id]);
+  // eslint-disable-next-line no-use-before-define
+  }, [getData, id]);
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const getData = async () => {
     try {
       const docRef = doc(db, "podcasts", id);
@@ -75,10 +77,10 @@ function PodcastDetailsPage() {
               <h1 className="podcast-title-heading">{podcast.title}</h1>
               {podcast.createdBy === auth.currentUser.uid && (
                 <Button
-                  style={{ width: "200px", margin: 0 }}
-                  text={"Create Episode"}
+                  style={{ width: "200px", margin: 0, textAlign: "center" }}
+                  text={"Create An Episode"}
                   onClick={() => {
-                    navigate(`/podcasts/${id}/create-episode`);
+                    navigate(`/podcast/${id}/create-episode`);
                   }}
                 />
               )}
@@ -88,7 +90,7 @@ function PodcastDetailsPage() {
               <img src={podcast.bannerImage} alt="bannerImage" />
             </div>
             <p className="podcast-description">{podcast.description}</p>
-            <h1 className="podcast-title-heading">Episodes</h1>
+            <h1 className="podcast-title-heading" >Episodes</h1>
             {episodes.length > 0 ? (
               <>
                 {episodes.map((episode, index) => {
@@ -103,6 +105,8 @@ function PodcastDetailsPage() {
                     />
                   );
                 })}
+                 
+
               </>
             ) : (
               <p style={{color: "var(--purple-grey" }}>
@@ -112,6 +116,7 @@ function PodcastDetailsPage() {
         )}
       </div>
       {playingFile && <AudioPlayer audioSrc={playingFile} image={podcast.displayImage} />}
+      
     </>
   );
 }

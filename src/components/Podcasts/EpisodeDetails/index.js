@@ -10,10 +10,10 @@ function EpisodeDetails({ index, title, description, audioFile, onClick }) {
       <p style={{ marginLeft: "1.5rem" }} className="podcast-description">
         {description}
       </p>
-      <Button
+      <Button className="play-btn"
         text={"Play"}
         onClick={() => onClick(audioFile)}
-        style={{ width: "100px" }}
+        style={{ width: "40px", textAlign: "center" }}
       />
     </div>
   );
