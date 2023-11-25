@@ -4,10 +4,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { signOut } from "firebase/auth";
 import { auth, db, storage } from "../firebase";
 import Button from "../components/common/Button";
+import { clearUser } from "../slices/userSlice";
 import {
   collection,
   doc,
   getDoc,
+  deleteDoc,
   onSnapshot,
   query,
   setDoc,
@@ -58,16 +60,16 @@ function Profile() {
     user?.uid && getDetails();
   }, [dispatch, user]);
 
-  const handleLogout = () => {
-    signOut(auth)
-      .then(() => {
-        toast.success("User Logged Out!");
-      })
-      .catch((error) => {
-        // An error happened.
-        toast.error(error.message);
-      });
-  };
+  const handleLogout = async () => {
+    try{
+      await signOut(auth);
+      dispatch(clearUser());
+    }
+    catch(e){
+      toast.error(e.message);
+      console.log("error while logout ", e);
+    }
+  }
 
   const handleChange = (e) => {
     setProfileDetails({ ...profileDetails, [e.target.name]: e.target.value });
@@ -113,6 +115,28 @@ function Profile() {
     setProfilePic(e.target.files[0]);
   };
 
+  const deletePodcastFromFirestore = async (podcastId) => {
+    try {
+      const podcastDocRef = doc(db, "podcasts", podcastId);
+      await deleteDoc(podcastDocRef);
+      console.log("Podcast deleted successfully");
+      // Optionally, you can update your Redux state or local state to reflect the deletion
+    } catch (error) {
+      console.error("Error deleting podcast:", error);
+      // Handle the error as needed
+    }
+  };
+
+  const handleDeletePodcast = async (podcastId) => {
+    try {
+      // Implement the deletePodcastFromFirestore function here
+      await deletePodcastFromFirestore(podcastId);
+    } catch (error) {
+      console.error("Error deleting podcast:", error);
+      // Handle the error as needed
+    }
+  };
+
   return (
     <>
     <Header />
@@ -142,9 +166,9 @@ function Profile() {
             <img
               style={{
                 objectFit: "cover",
-                borderRadius: "15%",
-                height: "150px",
-                width: "150px",
+                borderRadius: "50%",
+                height: "200px",
+                width: "200px",
               }}
               src={profilePicSrc ?? userDetails?.profileImage}
               alt={user?.name}
@@ -153,7 +177,7 @@ function Profile() {
               <>
                 <label
                   htmlFor="profilePic"
-                  style={{ position: "absolute", fontSize: "1.5rem" }}
+                  // style={{ position: "absolute", fontSize: "1.5rem" }}
                 >
                   <TiEdit />
                 </label>
@@ -181,7 +205,6 @@ function Profile() {
                   onChange={handleChange}
                   name="name"
                   className="readable-input"
-                  style={{ borderBottom: isEdit ? "1px solid #fff" : "none" }}
                 />
               </p>
             </div>
@@ -230,14 +253,14 @@ function Profile() {
 
         {myPodcasts.length > 0 && (
           <>
-            <div style={{ marginTop: "40px" }}>
-              <h2 style={{ width: "100%", margin: "auto" }}>
-                {profileDetails.name}'s Podcasts
-              </h2>
+            <div style={{ marginTop: "180px" }}>
+              <h1 style={{ width: "100%", margin: "auto" }}>
+                Your Podcasts
+              </h1>
             </div>
             <div
               className="podcasts-flex-profile"
-              style={{ marginTop: "1.5rem" }}
+              style={{ marginTop: "1.5rem", display: "flex", gap: "2rem" }}
             >
               {myPodcasts.map((data, i) => {
                 return (
@@ -246,6 +269,7 @@ function Profile() {
                     title={data.title}
                     id={data.id}
                     displayImage={data.displayImage}
+                    onDelete={handleDeletePodcast}
                   />
                 );
               })}

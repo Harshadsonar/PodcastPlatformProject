@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import InputComponent from "../components/common/Input";
 import FileInput from "../components/common/Input/FileInput";
@@ -18,7 +17,6 @@ function CreateAnEpisodePge() {
   const [loading, setLoading] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const audioFileHandle = (file) => {

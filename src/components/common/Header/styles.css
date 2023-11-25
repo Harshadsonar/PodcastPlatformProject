@@ -2,7 +2,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 1.5rem;
+    padding: 1rem;
 }
 
 .links {
@@ -18,11 +18,11 @@
     text-decoration: none !important;
     font-weight: 500;
     text-transform: uppercase;
-    letter-spacing: .25em;
+    letter-spacing: .20em;
     display: inline-block;
-    padding: 15px;
+    padding: 10px;
     position: relative;
-    font-size: 14px;
+    font-size: 12px;
 }
 
 .links a::after {

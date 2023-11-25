@@ -1,13 +1,13 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
 import InputComponent from "../common/Input";
+import { useNavigate } from "react-router-dom";
 import Button from "../common/Button";
 import { toast } from "react-toastify";
 import FileInput from "../common/Input/FileInput";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { auth, db, storage } from "../../firebase";
-import { addDoc, collection, doc, setDoc } from "firebase/firestore";
+import { addDoc, collection } from "firebase/firestore";
+import GenreDropdown from "../common/GenreDropdownBar";
 
 function CreatePodCastForm() {
   const [title, setTitle] = useState("");
@@ -15,8 +15,7 @@ function CreatePodCastForm() {
   const [displayImage, setDisplayImage] = useState();
   const [bannerImage, setBannerImage] = useState();
   const [loading, setLoading] = useState(false);
-
-  const dispatch = useDispatch();
+  const [genre, setGenre] = useState("");
   const navigate = useNavigate();
 
   const handleSubmit = async () => {
@@ -46,7 +45,8 @@ function CreatePodCastForm() {
         };
 
         const docRef = await addDoc(collection(db, "podcasts"), podcastData);
-        toast.success("Created PodCast");
+        toast.success("Created A PodCast");
+        
         setLoading(false);
       } catch (e) {
         toast.error(e.message);
@@ -69,6 +69,7 @@ function CreatePodCastForm() {
   };
   return (
     <>
+    <h1>Create A PodCast</h1>
       <InputComponent
         state={title}
         setState={setTitle}
@@ -82,6 +83,9 @@ function CreatePodCastForm() {
         placeholder="Description"
         type="text"
         required={true}
+      />
+      <GenreDropdown 
+      genre={genre} setGenre={setGenre}
       />
       <FileInput
         accept={"imaege/*"}
@@ -99,10 +103,15 @@ function CreatePodCastForm() {
       <Button
         text={loading ? "Loading..." : "Create Podcast"}
         disabled={loading}
-        onClick={handleSubmit}
+        onClick={() => {
+          handleSubmit();
+          navigate(`/podcasts`);
+        }}
       />
     </>
   );
 }
 
 export default CreatePodCastForm;
+
+

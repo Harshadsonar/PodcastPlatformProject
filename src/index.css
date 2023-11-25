@@ -2,7 +2,7 @@
 :root {
     --theme: #332755;
     --blue: #00FFFF;
-    --white: #a7e7e9;
+    --white: #FFFFFF;
     --grey: #3366FF;
     --purple-grey: #3399FF;
 }
@@ -35,9 +35,9 @@ a {
 }
 
 .input-wrapper h1 {
-    font-size: 1.5rem;
+    font-size: 2rem;
     text-align: center;
-    font-weight: 400;
+    font-weight: 700;
     margin-bottom: 1rem;
 }
 
@@ -66,12 +66,67 @@ a {
     }
 }
 
+.Podcasts {
+    width: 80%;
+    margin: 0px auto;
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+.Podcasts h1 {
+    margin-block: 1rem;
+    font-size: 1.75rem;
+    font-weight: 300;
+    user-select: none;
+}
+
 .podcasts-flex {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 1.5rem;
     flex-wrap: wrap;
+    margin: 1.5rem 0px 2rem;
+}
+
+.genre-btn-wrapper {
+    /* border: 1px solid snow; */
+    margin-block: 1.5rem;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.8rem;
+    flex-wrap: wrap;
+}
+
+@media (max-width: 1000px) {
+    .Podcasts {
+        width: 90%;
+    }
+}
+
+@media (max-width: 600px) {
+    .Podcasts {
+        padding-inline: 1rem;
+        width: 100%;
+    }
+    .Podcasts input {
+        border: 1px solid var(--purple-grey);
+    }
+}
+
+.podcast-wrapper {
+    /* border: 1px solid salmon; */
+    width: 80%;
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
 }
 
 .podcast-title-heading {
@@ -97,4 +152,63 @@ a {
 .podcast-description {
     color: var(--purple-grey);
     text-align: left;
+}
+
+.CreatePodCastForm {
+    text-align: center;
+}
+
+.col-1 {
+    width: 8.33%;
+}
+
+.col-2 {
+    width: 16.66%;
+}
+
+.col-3 {
+    width: 25%;
+}
+
+.col-4 {
+    width: 33.33%;
+}
+
+.col-5 {
+    width: 41.66%;
+}
+
+.col-6 {
+    width: 50%;
+}
+
+.col-7 {
+    width: 58.33%;
+}
+
+.col-8 {
+    width: 66.66%;
+}
+
+.col-9 {
+    width: 75%;
+}
+
+.col-10 {
+    width: 83.33%;
+}
+
+.col-11 {
+    width: 91.66%;
+}
+
+.col-12 {
+    width: 100%;
+}
+
+@media only screen and (max-width: 768px) {
+    /* For mobile phones: */
+    [class*="col-"] {
+        width: 100%;
+    }
 }

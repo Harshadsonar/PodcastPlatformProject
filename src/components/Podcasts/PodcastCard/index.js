@@ -16,11 +16,13 @@ function PodcastCard({ id, title, displayImage, onDelete }) {
     }
   }
   return (
-    <Link to={`/podcast/${id}`}>
+    <Link>
       <div className="podcast-card">
         <img className="display-image-podcast" src={displayImage} alt={title} />
         <h3 className="title-podcast">{title}</h3>
-        <button onClick={handleDelete}>Delete</button>
+        <Link to={`/podcast/${id}`}><button className="podcast-card-button">Edit</button></Link>
+        
+        <button className="podcast-card-button" onClick={handleDelete}>Delete</button>
       </div>
     </Link>
   );

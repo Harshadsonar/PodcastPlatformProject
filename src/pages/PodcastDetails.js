@@ -14,6 +14,7 @@ function PodcastDetailsPage() {
   const [podcast, setPodcast] = useState({});
   const [episodes, setEpisodes] = useState([]);
   const [playingFile, setPlayingFile] = useState("");
+  let getData = ("");
 
   useEffect(() => {
       getData();
@@ -21,7 +22,7 @@ function PodcastDetailsPage() {
   }, [getData, id]);
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  const getData = async () => {
+  getData = async () => {
     try {
       const docRef = doc(db, "podcasts", id);
       const docSnap = await getDoc(docRef);
@@ -63,7 +64,7 @@ function PodcastDetailsPage() {
   return (
     <>
       <Header />
-      <div className="input-wrapper">
+      <div className="input-wrapper" style={{ marginBottom: "100px" }} >
         {podcast.id && (
           <>
             <div
@@ -105,9 +106,7 @@ function PodcastDetailsPage() {
                     />
                   );
                 })}
-                 
-
-              </>
+                </>
             ) : (
               <p style={{color: "var(--purple-grey" }}>
               No Episodes Available</p>
@@ -115,8 +114,9 @@ function PodcastDetailsPage() {
           </>
         )}
       </div>
-      {playingFile && <AudioPlayer audioSrc={playingFile} image={podcast.displayImage} />}
+      {playingFile && <AudioPlayer audioSrc={playingFile} image={podcast.displayImage}
       
+       />}
     </>
   );
 }

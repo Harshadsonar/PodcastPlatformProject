@@ -9,7 +9,6 @@ function CreateAPodcastPage() {
     <div>
         <Header/>
         <div className='input-wrapper'>
-            <h1>Create A PodCast</h1>
             <CreatePodCastForm/>
         </div>
     </div>

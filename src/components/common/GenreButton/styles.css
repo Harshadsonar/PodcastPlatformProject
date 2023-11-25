@@ -1,0 +1,38 @@
+.container {
+    border: 1px solid white;
+    /* width: 100px; */
+    /* height: 40px; */
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.animated-word {
+    /* border: 1px solid seagreen; */
+    padding: 0.5rem 0.8rem;
+    /* width: 100px; */
+    height: 100%;
+    font-family: Helvetica;
+    letter-spacing: 0.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    font-size: 18px;
+    color: rgba(71, 126, 232, 0.5);
+    cursor: pointer;
+    outline: 1px solid;
+    /* border: 1px solid rgba(71, 126, 232, 0.5); */
+    outline-color: rgba(71, 126, 232, 0.5);
+    /* outline-color: var(--blue); */
+    outline-offset: 0.3rem;
+    /* border-radius: 2px; */
+    transition: all 0.6s cubic-bezier(0.2, 0, 0, 0.8);
+}
+
+.animated-word:hover {
+    color: rgba(71, 126, 232, 0.7);
+    outline-color: rgba(71, 126, 232, 0);
+    outline-offset: 30px;
+}
