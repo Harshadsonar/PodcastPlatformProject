@@ -168,7 +168,7 @@ import { db } from "../firebase";
 import { setPodcasts } from "../slices/podcastSlice";
 import PodcastCard from "../components/Podcasts/PodcastCard/index";
 import Input from "../components/common/Input/index";
-import GenreButton from "../components/common/GenreButton/index"
+import GenreButton from "../components/common/GenreButton/index";
 import Header from "../components/common/Header/index";
 
 const CreatePodCastForm = () => {

@@ -76,7 +76,6 @@ function LogInForm() {
     required={true}
   />
   <Button text={loading ? "Loading.." : "Log In"} disabled={loading} onClick={handleLogin}/>
-  <p onClick={() => setPopup(true)}>Forgot Password</p>
   </>
   )
 }
