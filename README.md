@@ -1,4 +1,4 @@
-Project Live Link :-  podcast-platform-project.vercel.app 
+Project Live Link :- [ podcast-platform-project.vercel.app ](https://podcast-platform-project.vercel.app/)
 
 Login Page - User can Login using email id and Password, Also user can Signup and Reset Password.
 
